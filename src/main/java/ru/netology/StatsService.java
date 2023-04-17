@@ -18,29 +18,29 @@ public class StatsService {
     public int monthMaximumSale(long[] sales) {
         int monthMaximum = 0;
         for (int i = 0; i < sales.length; i++) {
-            if (sales[i] <= sales[monthMaximum]) {
+            if (sales[i] >= sales[monthMaximum]) {
                 monthMaximum = i;
             }
 
         }
-        return monthMaximum;
+        return monthMaximum + 1;
     }
 
     public int monthMinimumSale(long[] sales) {
         int monthMinimum = 0;
         for (int i = 0; i < sales.length; i++) {
-            if (sales[i] <= sales[monthMinimum]) {
+            if (sales[i] <= sales[monthMinimum])
                 monthMinimum = i;
-            }
 
         }
-        return monthMinimum;
+        return monthMinimum + 1;
     }
 
     public int monthsBellowAverage(long[] sales) {
         int counter = 0;
+        int average = (int) average(sales);
         for (long sale : sales) {
-            if (sale < average(sales)) {
+            if (sale < average) {
                 counter++;
             }
 
@@ -50,8 +50,9 @@ public class StatsService {
 
     public int monthsAboveAverage(long[] sales) {
         int counter = 0;
+        int average = (int) average(sales);
         for (long sale : sales) {
-            if (sale > average(sales)) {
+            if (sale > average) {
                 counter++;
             }
 
